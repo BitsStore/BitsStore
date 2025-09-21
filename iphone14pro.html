@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iphone 14 Pro - BitsStore</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    .product-gallery img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .thumbnail img {
+      width: 80px;
+      cursor: pointer;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      transition: 0.2s;
+    }
+    .thumbnail img:hover {
+      border-color: #0caff0;
+    }
+    .price {
+      color: #ee4d2d;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .rating i {
+      color: #ffc107;
+    }
+    .comment-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    }
+    .buyer-gallery img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 5px;
+    }
+    /* Rodapé */
+    footer {
+      background: #fff;
+      padding: 30px;
+      margin-top: 50px;
+      text-align: center;
+      border-top: 1px solid #ddd;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Header */
+    .navbar {
+      background-color: #0caff0;
+    }
+    .navbar-brand {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff !important;
+    }
+    .search-box {
+      flex: 1;
+      margin: 0 20px;
+    }
+    .search-box input {
+      border-radius: 30px 0 0 30px;
+      border: none;
+    }
+    .search-box button {
+      border-radius: 0 30px 30px 0;
+      background-color: #056d96;
+      color: #fff;
+      border: none;
+      padding: 0 20px;
+    }
+    .navbar a {
+      color: #fff !important;
+      font-size: 0.9rem;
+      margin-left: 15px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">BitsStore</a>
+
+    <!-- Botão hamburguer (mobile) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Conteúdo da Navbar -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      
+      <!-- Barra de pesquisa -->
+      <form class="d-flex search-box mx-auto" role="search" onsubmit="return buscarProduto(event)">
+        <input id="campoBusca" class="form-control" type="search" placeholder="O que deseja?" aria-label="Buscar">
+        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+      </form>
+
+      <!-- Links extras (opcional) -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link text-white" href="#">Início</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#">Produtos</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#">Contato</a></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+  <!-- Produto -->
+<div class="container mt-4">
+  <div class="row">
+    <!-- Galeria -->
+    <div class="col-md-6">
+      <div class="product-gallery mb-3">
+        <img id="mainImage" src="iphone14pro/1.jpeg" alt="Iphone 14 Pro" class="img-fluid rounded shadow">
+      </div>
+      <div class="d-flex gap-2 thumbnail" id="thumbContainer">
+        <img src="iphone14pro/1.jpeg" onclick="trocarImagem(this)" class="thumb active">
+        <img src="iphone14pro/2.jpeg" onclick="trocarImagem(this)" class="thumb">
+        <img src="iphone14pro/3.jpeg" onclick="trocarImagem(this)" class="thumb">
+        <img src="iphone14pro/4.jpeg" onclick="trocarImagem(this)" class="thumb">
+      </div>
+    </div>
+
+    <!-- Detalhes -->
+    <div class="col-md-6">
+      <h3>Iphone 14 Pro</h3>
+      <div class="rating mb-2">
+        <p>+6,9 mil vendidos</p>
+        ⭐⭐⭐⭐☆
+      </div>
+
+      <!-- Preços -->
+      <p class="old-price" id="oldPrice">De: R$ 3.359,88</p>
+      <p class="price" id="newPrice">Por: R$ 2.799,90</p>
+      <span class="badge frete-gratis">🚚 Frete Grátis</span>
+
+      <p class="entrada">Apenas R$250,00 de entrada!</p>
+      <p class="parcelas" id="parcelas">E x12 de R$ 233,33</p>
+      <p id="descricao">iPhone 14 Pro, potência e elegância com garantia de qualidade. Produto lacrado e com nota fiscal!</p>
+      
+      <!-- Variantes -->
+      <div class="mb-3">
+        <h6>Escolha a memória:</h6>
+        <div class="d-flex flex-wrap gap-2">
+          
+          <button class="variant-btn" data-group="memoria" onclick="selecionarOpcao(this)">128GB</button>
+          <button class="variant-btn" data-group="memoria" onclick="selecionarOpcao(this)">256GB</button>
+          <button class="variant-btn" data-group="memoria" onclick="selecionarOpcao(this)">512GB</button>
+          
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <h6>Escolha a cor:</h6>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="variant-btn" data-group="cor" onclick="selecionarOpcao(this)">Branco</button>
+          <button class="variant-btn" data-group="cor" onclick="selecionarOpcao(this)">Preto</button>
+          
+        </div>
+      </div>
+
+      <!-- Botão -->
+      <button class="btn btn-success btn-lg shadow" data-bs-toggle="modal" data-bs-target="#pedidoModal">
+        <i class="fa fa-bolt"></i> Comprar Agora
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CSS -->
+<style>
+  .old-price {
+    font-size: 18px;
+    color: #888;
+    text-decoration: line-through;
+  }
+
+  .price {
+    font-size: 28px;
+    font-weight: bold;
+    color: #e60000;
+    margin-top: -10px;
+  }
+
+  .badge.frete-gratis {
+    display: inline-block;
+    background: #28a745;
+    color: #fff;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  .thumb {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .thumb:hover {
+    border: 2px solid #28a745;
+    transform: scale(1.05);
+  }
+
+  .thumb.active {
+    border: 2px solid #28a745;
+    transform: scale(1.05);
+  }
+
+  .product-gallery img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
+  .variant-btn {
+    padding: 8px 16px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    background: #f8f9fa;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+
+  .variant-btn:hover {
+    border-color: #28a745;
+    background: #fff;
+  }
+
+  .variant-btn.active {
+    border-color: #28a745;
+    background: #28a745;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  @media (max-width: 576px) {
+    .thumb {
+      width: 55px;
+      height: 55px;
+    }
+  }
+</style>
+
+<!-- JS -->
+<script>
+  let memoriaSelecionada = null;
+  let corSelecionada = "Branco"; // padrão
+
+  const precosBase = {
+    
+    "128GB": 2799.90,
+    "256GB": 3199.90,
+    "512GB": 3799.90
+
+  };
+
+  const adicionalCor = 150.00;
+
+  // imagens por cor
+  const imagensPorCor = {
+    "Branco": [
+      "iphone14pro/1.jpeg",
+      "iphone14pro/2.jpeg",
+      "iphone14pro/3.jpeg",
+      "iphone14pro/4.jpeg"
+    ],
+    "Preto": [
+      "iphone14pro/preto/1.jpeg",
+      "iphone14pro/preto/2.jpeg",
+      "iphone14pro/preto/3.jpeg"
+      
+    ],
+    
+  };
+
+  function formatarPreco(valor) {
+    return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  }
+
+  function trocarImagem(img) {
+    document.getElementById("mainImage").src = img.src;
+    document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
+    img.classList.add("active");
+  }
+
+  function selecionarOpcao(btn) {
+    const grupo = btn.dataset.group;
+    document.querySelectorAll(`.variant-btn[data-group="${grupo}"]`).forEach(el => el.classList.remove("active"));
+    btn.classList.add("active");
+
+    if (grupo === "memoria") {
+      memoriaSelecionada = btn.textContent.trim();
+    } else if (grupo === "cor") {
+      corSelecionada = btn.textContent.trim();
+      atualizarGaleria(corSelecionada);
+    }
+
+    atualizarPreco();
+  }
+
+  function atualizarPreco() {
+    if (!memoriaSelecionada) return;
+
+    let preco = precosBase[memoriaSelecionada];
+
+    document.getElementById("newPrice").textContent = "Por: " + formatarPreco(preco);
+    document.getElementById("oldPrice").textContent = "De: " + formatarPreco(preco * 1.2);
+    document.getElementById("parcelas").textContent = "E x12 de " + formatarPreco(preco / 12);
+  }
+
+  function atualizarGaleria(cor) {
+    const imagens = imagensPorCor[cor];
+    const mainImage = document.getElementById("mainImage");
+    const thumbContainer = document.getElementById("thumbContainer");
+
+    mainImage.src = imagens[0];
+    thumbContainer.innerHTML = "";
+
+    imagens.forEach((src, index) => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.className = "thumb" + (index === 0 ? " active" : "");
+      img.onclick = function () { trocarImagem(this); };
+      thumbContainer.appendChild(img);
+    });
+  }
+</script>
+
+
+  <!-- ====== BLOCO: Informações ====== -->
+<section class="product-info-block" aria-labelledby="info-titulo">
+  <h2 id="info-titulo">Informações adicionais</h2>
+  <ul class="bullets">
+    
+    <li>Iphone 14 Pro Original.</li>
+    <li>Processador: 2x 3.24 GHz Avalanche + 4x 2.02 GHz Blizzard</li>
+    <li>6GB Memoria RAM</li>
+    <li>Tela de 6.6 polegadas</li>
+    <li>Resolução 1170 x 2532 pixel</li>
+    <li>Câmera traseira de 12MP + 12MP + 12MP</li>
+    <li>Câmera frontal de 12MP</li>
+    <li>Bateria: Capacidade de 3095 mAh</li>
+    <li>Selo Apple</li>
+    <li>Cores originais.</li>
+    <li>Garantia 1 ano Apple.</li>
+    <li>Inclui nota fiscal.</li>
+  </ul>
+
+  <h3>Este é um produto premium!</h3>
+  <ul class="steps">
+    <li>Inspecionamos a originalidade (só vendemos se for original)</li>
+    <li>O item vai lacrado e selado.</li>
+    <li>Garantimos sua satisfação!</li>
+  </ul>
+
+  <h3>O que vem no pacote?</h3>
+  <p>Iphone 14 Pro Original</p>
+  <p>Carregador Original Apple</p>
+  <p>Pelicula</p>
+  <p>Capinha</p>
+
+  <h3>Perguntas frequentes</h3>
+  <div class="faq">
+    <details>
+      <summary>O Iphone é original?</summary>
+      <p>Sim, te garantimos isso. Só vão para venda os que possuem selo original Apple.</p>
+    </details>
+
+    <details>
+      <summary>Pode vir arranhado, quebrado?</summary>
+      <p>Não! O produto é novo! Vai lacrado sem marcas de uso e muito bem embalado para garantir a segurança do produto.</p>
+    </details>
+
+    <details>
+      <summary>E se der problema, vou ter suporte?</summary>
+      <p>Claro! Se precisar é só falar com nosso suporte via WhatsApp.</p>
+      <p>Você pode reportar seu problema pelo suporte</p>
+      <p>ou você pode solicitar seu reembolso.</p>
+    </details>
+
+    <details>
+      <summary>Posso reembolsar a compra?</summary>
+      <p>Sim! você pode pedir seu reembolso.</p>
+      <p>Você conta com nosso prazo de até 3 Horas para receber o estorno do seu valor conforme a política da loja.</p>
+      <p>Entre em contato para orientarmos o passo a passo e lhe reembolsar.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ====== ESTILOS (cole no <head> ou no seu arquivo .css) ====== -->
+<style>
+  /* Variáveis para personalizar rápido */
+  .product-info-block {
+    --bg: #ffffff;
+    --card: #f8f9fb;
+    --text: #2b2b2b;
+    --muted: #6b7280;
+    --primary: #0caff0;   
+    --radius: 14px;
+    --shadow: 0 6px 20px rgba(0,0,0,.08);
+    --maxw: 860px;
+  }
+
+  .product-info-block {
+    background: var(--bg);
+    color: var(--text);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: clamp(16px, 2.5vw, 28px);
+    margin: 24px auto;
+    max-width: var(--maxw);
+    border: 1px solid rgba(0,0,0,.06);
+  }
+
+  .product-info-block h2,
+  .product-info-block h3 {
+    line-height: 1.2;
+    margin: 0 0 10px;
+    font-weight: 800;
+  }
+
+  .product-info-block h2 {
+    font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    padding-bottom: 6px;
+    border-bottom: 3px solid var(--primary);
+  }
+
+  .product-info-block h3 {
+    font-size: clamp(1.05rem, 2.1vw, 1.25rem);
+    margin-top: 18px;
+  }
+
+  .product-info-block p {
+    margin: 0 0 10px;
+    color: var(--text);
+  }
+
+  /* Listas */
+  .product-info-block .bullets,
+  .product-info-block .steps {
+    margin: 8px 0 14px 0;
+    padding-left: 1.1rem;
+  }
+
+  .product-info-block .bullets li {
+    margin: 6px 0;
+  }
+
+  .product-info-block .steps {
+    list-style: none;
+    padding-left: 0;
+  }
+  .product-info-block .steps li {
+    position: relative;
+    margin: 10px 0;
+    padding: 12px 12px 12px 44px;
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.06);
+  }
+  .product-info-block .steps li::before {
+    content: "✓";
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 13px;
+    background: #fff;
+  }
+
+  /* FAQ com <details> nativo (sem JS) */
+  .product-info-block .faq details {
+    border: 1px solid rgba(0,0,0,.08);
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    transition: box-shadow .2s ease, border-color .2s ease;
+  }
+  .product-info-block .faq details[open] {
+    box-shadow: var(--shadow);
+    border-color: var(--primary);
+  }
+  .product-info-block .faq summary {
+    list-style: none;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .product-info-block .faq summary::-webkit-details-marker { display: none; }
+  .product-info-block .faq summary::after {
+    content: "+";
+    margin-left: auto;
+    font-weight: 900;
+    color: var(--primary);
+    transition: transform .2s ease;
+  }
+  .product-info-block .faq details[open] summary::after { content: "–"; }
+  .product-info-block .faq p {
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* Responsivo */
+  @media (max-width: 480px) {
+    .product-info-block { border-radius: 10px; margin: 16px; }
+  }
+</style>
+
+<!-- Galeria de Compradores -->
+<div class="container mt-5">
+  <h4 class="fw-bold mb-4">Galeria de Compradores</h4>
+  <div class="row g-4">
+
+    <!-- Cliente 1 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/22.jpeg" alt="Cliente 1" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Miguel</h6>
+              <small class="text-muted">17/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Produto chegou bem rápido, telefone veio em perfeitas condições, tudo original como na descrição, podem comprar sem preocupação.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 2 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/default.png" alt="Cliente 1" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Claudemir</h6>
+              <small class="text-muted">20/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Excelente! Iphone em perfeito estado e nenhuma peça trocada, fiz todos os testes no 3utools. Foi uma excelente compra, valeu a pena. Ótimo vendedor, envio rápido, muito bem embalado, veio os brindes tudo certinho. Parabéns ao vendedor.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Cliente 3 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/12.jpeg" alt="Cliente 1" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Marta Silva</h6>
+              <small class="text-muted">12/07/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">É elogiado por ser um produto excelente, destacandose especialmente pela sua incrível bateria. A satisfação geral com o dispositivo é evidente, reforçando a qualidade do produto.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 4 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/default.png" alt="Cliente 2" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Lara Oliveira</h6>
+              <small class="text-muted">27/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Chegou super rápido bem embalado, vendedor super atencioso, podem comprar sem medo, maravilhoso 🥰</p>
+        </div>
+      </div>
+    </div> 
+    <!-- Cliente 5 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/11.jpeg" alt="Cliente 1" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Jaira Nação</h6>
+              <small class="text-muted">30/07/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Vou ficar com o aparelho pois o msm está novo e o preço valeu a pena compradores.</p>
+          <!-- Galeria -->
+          <div class="row g-2">
+            <div class="col-6">
+              <img src="iphone14pro/ref/1.jpeg" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-6">
+              <img src="iphone14pro/ref/2.jpeg" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-6">
+              <img src="iphone14pro/ref/3.jpeg" class="img-fluid rounded" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 6 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/30.jpeg" alt="Cliente 1" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Diego Oliveira</h6>
+              <small class="text-muted">22/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Iphone não necessita de comentários. Top.</p>
+          <!-- Galeria -->
+          <div class="row g-2">
+            <div class="col-6">
+              <img src="iphone14pro/ref/4.jpeg" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-6">
+              <img src="iphone14pro/ref/5.jpeg" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-6">
+              <img src="iphone14pro/ref/6.jpeg" class="img-fluid rounded" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 7 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/99.jpg" alt="Cliente 2" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Ana Clara Souza</h6>
+              <small class="text-muted">21/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Chegou perfeitamente, antes do prazo. Bateria 100%</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 8 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/100.jpg" alt="Cliente 2" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Ana Maria</h6>
+              <small class="text-muted">26/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Muito lindo! Veio perfeito!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 9 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/101.jpg" alt="Cliente 2" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Juliana Costa</h6>
+              <small class="text-muted">20/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Recebi antes do prazo.. abateria veio 100% Ele e novo , perfeito amei</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 10 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/102.jpg" alt="Cliente 1" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Diego Oliveira</h6>
+              <small class="text-muted">22/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Simplesmente lindo, intacto</p>
+          <!-- Galeria -->
+          <div class="row g-2">
+            <div class="col-6">
+              <img src="iphone14pro/ref/7.webp" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-6">
+              <img src="iphone14pro/ref/8.webp" class="img-fluid rounded" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 11 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/default.png" alt="Cliente 2" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Felipe Rodriguês</h6>
+              <small class="text-muted">23/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Chegou tudo certo, agora e usar e testar que tá tudo perfeito</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 12 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/103.jpg" alt="Cliente 1" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">André Costa</h6>
+              <small class="text-muted">27/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Chegou bem rápido, bem embalado, indico a loja</p>
+          <!-- Galeria -->
+          <div class="row g-2">
+            <div class="col-6">
+              <img src="iphone14pro/ref/9.webp" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-6">
+              <img src="iphone14pro/ref/10.webp" class="img-fluid rounded" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 13 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/104.jpg" alt="Cliente 2" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Camila Oliveira</h6>
+              <small class="text-muted">21/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Tudo certo envio bem rápido e tranquilo já é o segundo que compro</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 14 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/105.jpg" alt="Cliente 2" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Fernanda Almeida</h6>
+              <small class="text-muted">19/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Muito rápido a entrega e todo momento foi dado o devido suporte.tudo como anunciado foi entregue. Vendedor muito bom. Recomendo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 15 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/106.jpg" alt="Cliente 2" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Gabriel Prado</h6>
+              <small class="text-muted">26/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Confessor que fiquei surpreso com a qualidade do produto,chegou rápido, estava bem embalado ! Produto 100% original,saúde da bateria 100%</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 16 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/107.jpg" alt="Cliente 2" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Larissa Fernandes</h6>
+              <small class="text-muted">13/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Amei meu IPhone, chegou tudo certinho e com antecedência.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 17 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/108.jpg" alt="Cliente 2" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Luiza Rodriguês</h6>
+              <small class="text-muted">18/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Não vou mandar foto ou vídeo pq já estou usando o aparelho mas é zero não tem 1 aranhão, pra vc está precisando comprar com um preço justo essa é a loja parabéns podem comprar sem medo e chegar super rápido</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 18 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/default.png" alt="Cliente 2" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Rafael Lima</h6>
+              <small class="text-muted">28/07/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">chegou dentro do prazo, excelente qualidade.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 19 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/109.jpg" alt="Cliente 2" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Diego Nascimento</h6>
+              <small class="text-muted">27/07/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Ótimo muito bem embalado</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 20 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/110.jpg" alt="Cliente 2" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Maria Lucia</h6>
+              <small class="text-muted">27/09/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Parabéns 100% original</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 21 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/default.png" alt="Cliente 2" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Lucas Teixeira</h6>
+              <small class="text-muted">25/07/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Meu celular chegou super bem embalado. Lacrado. Muuuito rápido.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Formulário para novo comentário -->
+<div class="container mt-5">
+  <h5 class="fw-bold mb-3">Deixe seu comentário</h5>
+  <form id="comentarioForm">
+    <div class="mb-3">
+      <input type="text" id="nome" class="form-control" placeholder="Seu nome" required>
+    </div>
+    <div class="mb-3">
+      <textarea id="texto" class="form-control" placeholder="Escreva seu comentário" required></textarea>
+    </div>
+    <div class="mb-3">
+      <input type="file" id="midia" class="form-control" multiple accept="image/*,video/*">
+    </div>
+    <button type="submit" class="btn btn-primary">Publicar</button>
+  </form>
+</div>
+
+<script>
+document.getElementById("comentarioForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const nome = document.getElementById("nome").value;
+  const texto = document.getElementById("texto").value;
+  const arquivos = document.getElementById("midia").files;
+  const hoje = new Date().toLocaleDateString('pt-BR');
+
+  // Criar card do comentário
+  let card = document.createElement("div");
+  card.classList.add("col-md-6");
+  card.innerHTML = `
+    <div class="card shadow-sm border-0 rounded-3">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-3">
+          <!-- Avatar padrão -->
+          <img src="imagens/clientes/default.png" class="rounded-circle me-3" width="50" height="50">
+          <div>
+            <h6 class="mb-0 fw-bold">${nome}</h6>
+            <small class="text-muted">${hoje}</small>
+          </div>
+        </div>
+        <p class="mb-3">${texto}</p>
+        <div class="row g-2" id="galeria"></div>
+      </div>
+    </div>
+  `;
+
+  // Adicionar imagens/vídeos (se houver)
+  const galeria = card.querySelector("#galeria");
+  for (let file of arquivos) {
+    let url = URL.createObjectURL(file);
+    let col = document.createElement("div");
+    col.classList.add("col-6");
+
+    if (file.type.startsWith("image/")) {
+      col.innerHTML = `<img src="${url}" class="img-fluid rounded">`;
+    } else if (file.type.startsWith("video/")) {
+      col.innerHTML = `
+        <video class="w-100 rounded" controls>
+          <source src="${url}" type="${file.type}">
+        </video>
+      `;
+    }
+    galeria.appendChild(col);
+  }
+
+  // Inserir no FINAL da lista de comentários
+  document.querySelector(".row.g-4").appendChild(card);
+
+  // Resetar formulário
+  document.getElementById("comentarioForm").reset();
+});
+</script>
+
+<!-- Modal de Pedido -->
+<div class="modal fade" id="pedidoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">Finalizar Pedido</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <form id="pedidoForm">
+          <input type="hidden" id="produto" value="Iphone 14 Pro">
+
+          <div class="mb-3">
+            <label class="form-label">Seu nome</label>
+            <input type="text" id="nomeCliente" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">WhatsApp</label>
+            <input type="tel" id="whatsCliente" class="form-control" required placeholder="(DDD) 99999-9999">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Endereço</label>
+            <textarea id="enderecoCliente" class="form-control" rows="2" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Observações</label>
+            <textarea id="obsCliente" class="form-control" rows="2"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-success w-100">Enviar Pedido via WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Rodapé -->
+<footer class="footer text-white mt-5">
+  <div class="container text-center py-5">
+    
+    <!-- Logo/Mascote -->
+    <div class="mb-4">
+      <img src="imagens/logo.jpg" alt="Mascote BitsStore" class="logo-footer">
+    </div>
+
+    <!-- Nome e slogan -->
+    <h2 class="fw-bold mb-3">📍 BitsStore - Sua Loja de Eletrônicos</h2>
+
+    <!-- Informações -->
+    <p class="mb-2"><i class="fa fa-map-marker-alt"></i> Rua Do Ouvidor, 138 - São Paulo, SP</p>
+    <p class="mb-2"><i class="fa fa-phone"></i> (34) 99872-7721</p>
+    <p class="mb-3"><i class="fa fa-envelope"></i> suporte@bitsstore.com</p>
+
+    <!-- Ícones sociais -->
+    <div class="mt-3">
+      <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-2x"></i></a>
+      <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-2x"></i></a>
+      <a href="#" class="text-white me-3"><i class="fab fa-whatsapp fa-2x"></i></a>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Estilo do Rodapé -->
+<style>
+  .footer {
+    background-color: #0d6efd; /* 🔵 Cor sólida - pode trocar */
+    min-height: 300px;
+  }
+
+  .footer h2 {
+    font-size: 1.8rem;
+    color: #fff;
+  }
+
+  .footer p {
+    font-size: 1rem;
+    color: #ddd;
+  }
+
+  .footer a {
+    color: #fff;
+    transition: 0.3s;
+  }
+
+  .footer a:hover {
+    color: #000;
+  }
+
+  /* Logo do rodapé */
+  .logo-footer {
+    max-width: 150px;
+    border-radius: 20px; /* arredondar um pouco */
+  }
+
+  /* 🔹 Responsividade */
+  @media (max-width: 768px) {
+    .footer h2 { font-size: 1.4rem; }
+    .footer p { font-size: 0.9rem; }
+    .logo-footer { max-width: 120px; }
+  }
+</style>
+
+  <script>
+  function buscarProduto(event) {
+    event.preventDefault(); // não deixa recarregar
+    const termo = document.getElementById("campoBusca").value.trim();
+
+    if (termo) {
+      // Exemplo: redireciona para página de busca com a query
+      window.location.href = "busca.html?q=" + encodeURIComponent(termo);
+    } else {
+      alert("Digite algo para buscar 😉");
+    }
+  }
+</script>
+
+  <!-- Script -->
+  <script>
+    function trocarImagem(el) {
+      document.getElementById("mainImage").src = el.src;
+    }
+
+    function enviarComentario(event) {
+      event.preventDefault();
+      alert("Comentário enviado com sucesso! (Mas não será exibido publicamente)");
+      event.target.reset();
+    }
+  </script>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+document.getElementById("pedidoForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  // Seu número de WhatsApp (com DDI +55 para Brasil)
+  const numeroLoja = "5511988459268"; 
+
+  // Coletar dados
+  const produto = document.getElementById("produto").value;
+  const nome = document.getElementById("nomeCliente").value;
+  const whats = document.getElementById("whatsCliente").value;
+  const endereco = document.getElementById("enderecoCliente").value;
+  const obs = document.getElementById("obsCliente").value;
+
+  // Montar mensagem
+  const mensagem = `📦 *Novo Pedido!*
+  
+Produto: ${produto}
+Cliente: ${nome}
+WhatsApp: ${whats}
+Endereço: ${endereco}
+Observações: ${obs}`;
+
+  // Criar link para o WhatsApp
+  const url = `https://wa.me/${numeroLoja}?text=${encodeURIComponent(mensagem)}`;
+
+  // Redirecionar para WhatsApp
+  window.open(url, "_blank");
+
+  // Fechar modal
+  const modal = bootstrap.Modal.getInstance(document.getElementById('pedidoModal'));
+  modal.hide();
+
+});
+</script>
+
+<style>
+  /* Cabeçalho do modal */
+#pedidoModal .modal-header {
+  background-color: #0caff0; /* azul do seu layout */
+  color: #fff;
+  border-bottom: none;
+}
+
+/* Título */
+#pedidoModal .modal-title {
+  font-weight: bold;
+}
+
+/* Conteúdo */
+#pedidoModal .modal-content {
+  border-radius: 14px; /* deixa mais arredondado */
+  border: 2px solid #0caff0; /* borda azul */
+}
+
+/* Botão de fechar (o X) */
+#pedidoModal .btn-close {
+  filter: invert(1); /* deixa branco */
+}
+</style>
+
+
+
+</body>
+</html>

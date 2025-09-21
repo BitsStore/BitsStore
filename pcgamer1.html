@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PC GAMER COMPLETO - BitsStore</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    .product-gallery img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .thumbnail img {
+      width: 80px;
+      cursor: pointer;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      transition: 0.2s;
+    }
+    .thumbnail img:hover {
+      border-color: #0caff0;
+    }
+    .price {
+      color: #ee4d2d;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .rating i {
+      color: #ffc107;
+    }
+    .comment-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    }
+    .buyer-gallery img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 5px;
+    }
+   /* Rodapé */
+    footer {
+      background: #fff;
+      padding: 30px;
+      margin-top: 50px;
+      text-align: center;
+      border-top: 1px solid #ddd;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Header */
+    .navbar {
+      background-color: #0caff0;
+    }
+    .navbar-brand {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff !important;
+    }
+    .search-box {
+      flex: 1;
+      margin: 0 20px;
+    }
+    .search-box input {
+      border-radius: 30px 0 0 30px;
+      border: none;
+    }
+    .search-box button {
+      border-radius: 0 30px 30px 0;
+      background-color: #056d96;
+      color: #fff;
+      border: none;
+      padding: 0 20px;
+    }
+    .navbar a {
+      color: #fff !important;
+      font-size: 0.9rem;
+      margin-left: 15px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">BitsStore</a>
+
+    <!-- Botão hamburguer (mobile) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Conteúdo da Navbar -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      
+      <!-- Barra de pesquisa -->
+      <form class="d-flex search-box mx-auto" role="search" onsubmit="return buscarProduto(event)">
+        <input id="campoBusca" class="form-control" type="search" placeholder="O que deseja?" aria-label="Buscar">
+        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+      </form>
+
+      <!-- Links extras (opcional) -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link text-white" href="#">Início</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#">Produtos</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#">Contato</a></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+  <!-- Produto -->
+<div class="container mt-4">
+  <div class="row">
+    <!-- Galeria -->
+    <div class="col-md-6">
+      <div class="product-gallery mb-3">
+        <img id="mainImage" src="pcgamer1/1.webp" alt="PC GAMER COMPLETO" class="img-fluid rounded shadow">
+      </div>
+      <div class="d-flex gap-2 thumbnail" id="thumbContainer">
+        <img src="pcgamer1/1.webp" onclick="trocarImagem(this)" class="thumb active">
+        <img src="pcgamer1/2.webp" onclick="trocarImagem(this)" class="thumb">
+        <img src="pcgamer1/3.webp" onclick="trocarImagem(this)" class="thumb">
+        <img src="pcgamer1/4.webp" onclick="trocarImagem(this)" class="thumb">
+        <img src="pcgamer1/5.webp" onclick="trocarImagem(this)" class="thumb">
+        <img src="pcgamer1/6.webp" onclick="trocarImagem(this)" class="thumb">
+      </div>
+    </div>
+
+    <!-- Detalhes -->
+    <div class="col-md-6">
+      <h3>PC GAMER COMPLETO</h3>
+      <div class="rating mb-2">
+        <p>+5,2 mil vendidos</p>
+        ⭐⭐⭐⭐☆
+      </div>
+
+      <!-- Preços -->
+      <p class="old-price" id="oldPrice">De: R$ 1.919,88</p>
+      <p class="price" id="newPrice">Por: R$ 1.599,90</p>
+      <span class="badge frete-gratis">🚚 Frete Grátis</span>
+
+      <p class="entrada">Apenas R$200,00 de entrada!</p>
+      <p class="parcelas" id="parcelas">E x12 de R$ 133,33</p>
+      <p id="descricao">Potência e elegância com garantia de qualidade. Produto lacrado e com nota fiscal!</p>
+      
+      <!-- Variantes -->
+      <div class="mb-3">
+        <h6>Escolha a memória:</h6>
+        <div class="d-flex flex-wrap gap-2">
+          
+          <button class="variant-btn" data-group="memoria" onclick="selecionarOpcao(this)">240GB</button>
+          
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <h6>Escolha a cor:</h6>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="variant-btn" data-group="cor" onclick="selecionarOpcao(this)">Vidro</button>
+         
+          
+        </div>
+      </div>
+
+      <!-- Botão -->
+      <button class="btn btn-success btn-lg shadow" data-bs-toggle="modal" data-bs-target="#pedidoModal">
+        <i class="fa fa-bolt"></i> Comprar Agora
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CSS -->
+<style>
+  .old-price {
+    font-size: 18px;
+    color: #888;
+    text-decoration: line-through;
+  }
+
+  .price {
+    font-size: 28px;
+    font-weight: bold;
+    color: #e60000;
+    margin-top: -10px;
+  }
+
+  .badge.frete-gratis {
+    display: inline-block;
+    background: #28a745;
+    color: #fff;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  .thumb {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .thumb:hover {
+    border: 2px solid #28a745;
+    transform: scale(1.05);
+  }
+
+  .thumb.active {
+    border: 2px solid #28a745;
+    transform: scale(1.05);
+  }
+
+  .product-gallery img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
+  .variant-btn {
+    padding: 8px 16px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    background: #f8f9fa;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+
+  .variant-btn:hover {
+    border-color: #28a745;
+    background: #fff;
+  }
+
+  .variant-btn.active {
+    border-color: #28a745;
+    background: #28a745;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  @media (max-width: 576px) {
+    .thumb {
+      width: 55px;
+      height: 55px;
+    }
+  }
+</style>
+
+<!-- JS -->
+<script>
+  let memoriaSelecionada = null;
+  let corSelecionada = "Vidro"; // padrão
+
+  const precosBase = {
+    
+    "240GB": 1599.90
+    
+  };
+
+  const adicionalCor = 150.00;
+
+  // imagens por cor
+  const imagensPorCor = {
+    "Vidro": [
+      "pcgamer1/1.webp",
+      "pcgamer1/2.webp",
+      "pcgamer1/3.webp"
+      
+    ]
+  
+    
+  };
+
+  function formatarPreco(valor) {
+    return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  }
+
+  function trocarImagem(img) {
+    document.getElementById("mainImage").src = img.src;
+    document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
+    img.classList.add("active");
+  }
+
+  function selecionarOpcao(btn) {
+    const grupo = btn.dataset.group;
+    document.querySelectorAll(`.variant-btn[data-group="${grupo}"]`).forEach(el => el.classList.remove("active"));
+    btn.classList.add("active");
+
+    if (grupo === "memoria") {
+      memoriaSelecionada = btn.textContent.trim();
+    } else if (grupo === "cor") {
+      corSelecionada = btn.textContent.trim();
+      atualizarGaleria(corSelecionada);
+    }
+
+    atualizarPreco();
+  }
+
+  function atualizarPreco() {
+    if (!memoriaSelecionada) return;
+
+    let preco = precosBase[memoriaSelecionada];
+
+    document.getElementById("newPrice").textContent = "Por: " + formatarPreco(preco);
+    document.getElementById("oldPrice").textContent = "De: " + formatarPreco(preco * 1.2);
+    document.getElementById("parcelas").textContent = "E x12 de " + formatarPreco(preco / 12);
+  }
+
+  function atualizarGaleria(cor) {
+    const imagens = imagensPorCor[cor];
+    const mainImage = document.getElementById("mainImage");
+    const thumbContainer = document.getElementById("thumbContainer");
+
+    mainImage.src = imagens[0];
+    thumbContainer.innerHTML = "";
+
+    imagens.forEach((src, index) => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.className = "thumb" + (index === 0 ? " active" : "");
+      img.onclick = function () { trocarImagem(this); };
+      thumbContainer.appendChild(img);
+    });
+  }
+</script>
+
+
+  <!-- ====== BLOCO: Informações ====== -->
+<section class="product-info-block" aria-labelledby="info-titulo">
+  <h2 id="info-titulo">Configurações CPU</h2>
+  <ul class="bullets">
+
+
+    <li>Processador: Intel Core i5 3470 3.2GHz</li>
+    <li>Memoria RAM: 16GB Kingston DDR3 1600MHz</li>
+    <li>Placa de video: NVIDIA GT 730 de 4GB</li>
+    <li>Placa mãe: Foxconn Chipset Intel H61 DDR3</li>
+    <li>Armazenamento: SSD de 240GB</li>
+
+<h2>Conexões e slot de expansão</h2>
+
+    <li>2x slot PCI Express x8</li>
+    <li>1x M.2 NVME</li>
+    <li>1x SATA 3 (Até 6gb/s)</li>
+    <li>2x SATA 2 (Até 3gb/s)</li>
+
+    <li>1x Saida VGA</li>
+    <li>1x Saida HDMI</li>
+    <li>6x portas USB 2.0</li>
+
+<h2>Gabinete</h2>
+
+    <li>ATX GB1749 Com Frente e Lateral de Vidro Temperado e 03 Cooler RGB Rainbow.</li>
+
+<h2>Sistema operacional</h2>
+
+    <p>Windows 10</p>
+    
+<h2>Nota Fiscal e Garantia De 1 Ano</h2>
+  </ul>
+
+  <h3>Este é um produto premium!</h3>
+  <ul class="steps">
+    <li>Inspecionamos a originalidade (só vendemos se for original)</li>
+    <li>O item vai lacrado e selado.</li>
+    <li>Garantimos sua satisfação!</li>
+  </ul>
+
+  <h3>O que vem no pacote?</h3>
+  <p>KIT GAMER RGB</p>
+  <p>MONITOR LED DE 19" COM SAÍDA HDMI E VGA 75Hz</p>
+  <p>CPU CONFORME DESCRIÇÃO</p>
+  <p>HEADSET</p>
+  <p>TECLADO RGB</p>
+  <p>MOUSE RGB</p>
+  <p>MOUSEPAD</p>
+  <p>1 CABO HDMI</p>
+  <P>2 CABO DE FORÇA(cpu e monitor)</P>
+  <p>ADAPTADOR WI-FI</p>
+
+  <h3>Perguntas frequentes</h3>
+  <div class="faq">
+    <details>
+      <summary>O aparelho é original?</summary>
+      <p>Sim, te garantimos isso. Só vão para venda produtos originais.</p>
+    </details>
+
+    <details>
+      <summary>Pode vir arranhado, quebrado?</summary>
+      <p>Não! O produto é novo! Vai lacrado sem marcas de uso e muito bem embalado para garantir a segurança do produto.</p>
+    </details>
+
+    <details>
+      <summary>E se der problema, vou ter suporte?</summary>
+      <p>Claro! Se precisar é só falar com nosso suporte via WhatsApp.</p>
+      <p>Você pode reportar seu problema pelo suporte</p>
+      <p>ou você pode solicitar seu reembolso.</p>
+    </details>
+
+    <details>
+      <summary>Posso reembolsar a compra?</summary>
+      <p>Sim! você pode pedir seu reembolso.</p>
+      <p>Você conta com nosso prazo de até 3 Horas para receber o estorno do seu valor conforme a política da loja.</p>
+      <p>Entre em contato para orientarmos o passo a passo e lhe reembolsar.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ====== ESTILOS (cole no <head> ou no seu arquivo .css) ====== -->
+<style>
+  /* Variáveis para personalizar rápido */
+  .product-info-block {
+    --bg: #ffffff;
+    --card: #f8f9fb;
+    --text: #2b2b2b;
+    --muted: #6b7280;
+    --primary: #0caff0;   
+    --radius: 14px;
+    --shadow: 0 6px 20px rgba(0,0,0,.08);
+    --maxw: 860px;
+  }
+
+  .product-info-block {
+    background: var(--bg);
+    color: var(--text);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: clamp(16px, 2.5vw, 28px);
+    margin: 24px auto;
+    max-width: var(--maxw);
+    border: 1px solid rgba(0,0,0,.06);
+  }
+
+  .product-info-block h2,
+  .product-info-block h3 {
+    line-height: 1.2;
+    margin: 0 0 10px;
+    font-weight: 800;
+  }
+
+  .product-info-block h2 {
+    font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    padding-bottom: 6px;
+    border-bottom: 3px solid var(--primary);
+  }
+
+  .product-info-block h3 {
+    font-size: clamp(1.05rem, 2.1vw, 1.25rem);
+    margin-top: 18px;
+  }
+
+  .product-info-block p {
+    margin: 0 0 10px;
+    color: var(--text);
+  }
+
+  /* Listas */
+  .product-info-block .bullets,
+  .product-info-block .steps {
+    margin: 8px 0 14px 0;
+    padding-left: 1.1rem;
+  }
+
+  .product-info-block .bullets li {
+    margin: 6px 0;
+  }
+
+  .product-info-block .steps {
+    list-style: none;
+    padding-left: 0;
+  }
+  .product-info-block .steps li {
+    position: relative;
+    margin: 10px 0;
+    padding: 12px 12px 12px 44px;
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.06);
+  }
+  .product-info-block .steps li::before {
+    content: "✓";
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 13px;
+    background: #fff;
+  }
+
+  /* FAQ com <details> nativo (sem JS) */
+  .product-info-block .faq details {
+    border: 1px solid rgba(0,0,0,.08);
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    transition: box-shadow .2s ease, border-color .2s ease;
+  }
+  .product-info-block .faq details[open] {
+    box-shadow: var(--shadow);
+    border-color: var(--primary);
+  }
+  .product-info-block .faq summary {
+    list-style: none;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .product-info-block .faq summary::-webkit-details-marker { display: none; }
+  .product-info-block .faq summary::after {
+    content: "+";
+    margin-left: auto;
+    font-weight: 900;
+    color: var(--primary);
+    transition: transform .2s ease;
+  }
+  .product-info-block .faq details[open] summary::after { content: "–"; }
+  .product-info-block .faq p {
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* Responsivo */
+  @media (max-width: 480px) {
+    .product-info-block { border-radius: 10px; margin: 16px; }
+  }
+</style>
+
+<!-- Galeria de Compradores -->
+
+  <h4 class="fw-bold mb-4">Galeria de Compradores</h4>
+  <div class="row g-4">
+
+    <!-- Cliente 1 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/default.png" alt="Cliente 1" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Angelo Matos</h6>
+              <small class="text-muted">26/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Não perca a oportunidade de experimentar jogos em um novo nível de desempenho e qualidade visual. Compre agora</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 2 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/50.jpeg" alt="Cliente 1" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Guiado por deus</h6>
+              <small class="text-muted">12/07/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">A melhor experiência possível! A entrega mais rápida de todos os tempos! O aparelho sem comentários sem explicação, Perfeito.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Cliente 3 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/49.jpeg" alt="Cliente 2" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Larissa Cardoso</h6>
+              <small class="text-muted">10/07/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Chegou super rápido bem embalado, vendedor super atencioso, podem comprar sem medo.</p>
+        </div>
+      </div>
+    </div> 
+    <!-- Cliente 4 -->
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/47.jpeg" alt="Cliente 1" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Evelim Vitoria</h6>
+              <small class="text-muted">29/08/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Excelente compra, a entrega adiantou 10 dias. Chegou muito rapido e tudo bem embalado e em perfeito estado tudo novinho no plastico e com os jogos ja instalados. Muito obrigado toda equipe.</p>
+          <!-- Galeria -->
+          <div class="row g-2">
+            <div class="col-6">
+              <img src="pcgamer1/ref/1.webp" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-6">
+              <img src="pcgamer1/ref/2.webp" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-6">
+              <img src="pcgamer1/3.webp" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-6">
+              <video class="w-100 rounded" controls>
+                <source src="pcgamer1/ref/video1.mp4" type="video/mp4">
+                Seu navegador não suporta vídeo.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 5 -->
+    
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/default.png" alt="Cliente 1" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Bento Rodrigues</h6>
+              <small class="text-muted">28/07/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Superou minhas expectativas</p>
+          <!-- Galeria -->
+          <div class="row g-2">
+            <div class="col-6">
+              <img src="pcgamer1/ref/4.webp" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-6">
+              <img src="pcgamer1/ref/5.webp" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-6">
+              <img src="pcgamer1/6.webp" class="img-fluid rounded" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cliente 6 -->
+    
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-body">
+          <!-- Perfil -->
+          <div class="d-flex align-items-center mb-3">
+            <img src="imagens/clientes/48.jpeg" alt="Cliente 1" class="rounded-circle me-3" width="50" height="50">
+            <div>
+              <h6 class="mb-0 fw-bold">Adalberto Gui</h6>
+              <small class="text-muted">05/06/2025</small>
+            </div>
+          </div>
+          <!-- Comentário -->
+          <p class="mb-3">Chegou muito rápido, bem antes do prazo, chegou tudo certinho</p>
+          <!-- Galeria -->
+          <div class="row g-2">
+            <div class="col-6">
+              <img src="pcgamer1/ref/7.webp" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-6">
+              <img src="pcgamer1/ref/8.webp" class="img-fluid rounded" alt="">
+            </div>
+            <div class="col-6">
+              <img src="pcgamer1/9.webp" class="img-fluid rounded" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Formulário para novo comentário -->
+<div class="container mt-5">
+  <h5 class="fw-bold mb-3">Deixe seu comentário</h5>
+  <form id="comentarioForm">
+    <div class="mb-3">
+      <input type="text" id="nome" class="form-control" placeholder="Seu nome" required>
+    </div>
+    <div class="mb-3">
+      <textarea id="texto" class="form-control" placeholder="Escreva seu comentário" required></textarea>
+    </div>
+    <div class="mb-3">
+      <input type="file" id="midia" class="form-control" multiple accept="image/*,video/*">
+    </div>
+    <button type="submit" class="btn btn-primary">Publicar</button>
+  </form>
+</div>
+
+<script>
+document.getElementById("comentarioForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const nome = document.getElementById("nome").value;
+  const texto = document.getElementById("texto").value;
+  const arquivos = document.getElementById("midia").files;
+  const hoje = new Date().toLocaleDateString('pt-BR');
+
+  // Criar card do comentário
+  let card = document.createElement("div");
+  card.classList.add("col-md-6");
+  card.innerHTML = `
+    <div class="card shadow-sm border-0 rounded-3">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-3">
+          <!-- Avatar padrão -->
+          <img src="imagens/clientes/default.png" class="rounded-circle me-3" width="50" height="50">
+          <div>
+            <h6 class="mb-0 fw-bold">${nome}</h6>
+            <small class="text-muted">${hoje}</small>
+          </div>
+        </div>
+        <p class="mb-3">${texto}</p>
+        <div class="row g-2" id="galeria"></div>
+      </div>
+    </div>
+  `;
+
+  // Adicionar imagens/vídeos (se houver)
+  const galeria = card.querySelector("#galeria");
+  for (let file of arquivos) {
+    let url = URL.createObjectURL(file);
+    let col = document.createElement("div");
+    col.classList.add("col-6");
+
+    if (file.type.startsWith("image/")) {
+      col.innerHTML = `<img src="${url}" class="img-fluid rounded">`;
+    } else if (file.type.startsWith("video/")) {
+      col.innerHTML = `
+        <video class="w-100 rounded" controls>
+          <source src="${url}" type="${file.type}">
+        </video>
+      `;
+    }
+    galeria.appendChild(col);
+  }
+
+  // Inserir no FINAL da lista de comentários
+  document.querySelector(".row.g-4").appendChild(card);
+
+  // Resetar formulário
+  document.getElementById("comentarioForm").reset();
+});
+</script>
+
+<!-- Modal de Pedido -->
+<div class="modal fade" id="pedidoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">Finalizar Pedido</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <form id="pedidoForm">
+          <input type="hidden" id="produto" value="PC GAMER COMPLETO">
+
+          <div class="mb-3">
+            <label class="form-label">Seu nome</label>
+            <input type="text" id="nomeCliente" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">WhatsApp</label>
+            <input type="tel" id="whatsCliente" class="form-control" required placeholder="(DDD) 99999-9999">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Endereço</label>
+            <textarea id="enderecoCliente" class="form-control" rows="2" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Observações</label>
+            <textarea id="obsCliente" class="form-control" rows="2"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-success w-100">Enviar Pedido via WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Rodapé -->
+<footer class="footer text-white mt-5">
+  <div class="container text-center py-5">
+    
+    <!-- Logo/Mascote -->
+    <div class="mb-4">
+      <img src="imagens/logo.jpg" alt="Mascote BitsStore" class="logo-footer">
+    </div>
+
+    <!-- Nome e slogan -->
+    <h2 class="fw-bold mb-3">📍 BitsStore - Sua Loja de Eletrônicos</h2>
+
+    <!-- Informações -->
+    <p class="mb-2"><i class="fa fa-map-marker-alt"></i> Rua Do Ouvidor, 138 - São Paulo, SP</p>
+    <p class="mb-2"><i class="fa fa-phone"></i> (34) 99872-7721</p>
+    <p class="mb-3"><i class="fa fa-envelope"></i> suporte@bitsstore.com</p>
+
+    <!-- Ícones sociais -->
+    <div class="mt-3">
+      <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-2x"></i></a>
+      <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-2x"></i></a>
+      <a href="#" class="text-white me-3"><i class="fab fa-whatsapp fa-2x"></i></a>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Estilo do Rodapé -->
+<style>
+  .footer {
+    background-color: #0d6efd; /* 🔵 Cor sólida - pode trocar */
+    min-height: 300px;
+  }
+
+  .footer h2 {
+    font-size: 1.8rem;
+    color: #fff;
+  }
+
+  .footer p {
+    font-size: 1rem;
+    color: #ddd;
+  }
+
+  .footer a {
+    color: #fff;
+    transition: 0.3s;
+  }
+
+  .footer a:hover {
+    color: #000;
+  }
+
+  /* Logo do rodapé */
+  .logo-footer {
+    max-width: 150px;
+    border-radius: 20px; /* arredondar um pouco */
+  }
+
+  /* 🔹 Responsividade */
+  @media (max-width: 768px) {
+    .footer h2 { font-size: 1.4rem; }
+    .footer p { font-size: 0.9rem; }
+    .logo-footer { max-width: 120px; }
+  }
+</style>
+
+  <script>
+  function buscarProduto(event) {
+    event.preventDefault(); // não deixa recarregar
+    const termo = document.getElementById("campoBusca").value.trim();
+
+    if (termo) {
+      // Exemplo: redireciona para página de busca com a query
+      window.location.href = "busca.html?q=" + encodeURIComponent(termo);
+    } else {
+      alert("Digite algo para buscar 😉");
+    }
+  }
+</script>
+
+  <!-- Script -->
+  <script>
+    function trocarImagem(el) {
+      document.getElementById("mainImage").src = el.src;
+    }
+
+    function enviarComentario(event) {
+      event.preventDefault();
+      alert("Comentário enviado com sucesso! (Mas não será exibido publicamente)");
+      event.target.reset();
+    }
+  </script>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+document.getElementById("pedidoForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  // Seu número de WhatsApp (com DDI +55 para Brasil)
+  const numeroLoja = "5511988459268"; 
+
+  // Coletar dados
+  const produto = document.getElementById("produto").value;
+  const nome = document.getElementById("nomeCliente").value;
+  const whats = document.getElementById("whatsCliente").value;
+  const endereco = document.getElementById("enderecoCliente").value;
+  const obs = document.getElementById("obsCliente").value;
+
+  // Montar mensagem
+  const mensagem = `📦 *Novo Pedido!*
+  
+Produto: ${produto}
+Cliente: ${nome}
+WhatsApp: ${whats}
+Endereço: ${endereco}
+Observações: ${obs}`;
+
+  // Criar link para o WhatsApp
+  const url = `https://wa.me/${numeroLoja}?text=${encodeURIComponent(mensagem)}`;
+
+  // Redirecionar para WhatsApp
+  window.open(url, "_blank");
+
+  // Fechar modal
+  const modal = bootstrap.Modal.getInstance(document.getElementById('pedidoModal'));
+  modal.hide();
+
+});
+</script>
+
+<style>
+  /* Cabeçalho do modal */
+#pedidoModal .modal-header {
+  background-color: #0caff0; /* azul do seu layout */
+  color: #fff;
+  border-bottom: none;
+}
+
+/* Título */
+#pedidoModal .modal-title {
+  font-weight: bold;
+}
+
+/* Conteúdo */
+#pedidoModal .modal-content {
+  border-radius: 14px; /* deixa mais arredondado */
+  border: 2px solid #0caff0; /* borda azul */
+}
+
+/* Botão de fechar (o X) */
+#pedidoModal .btn-close {
+  filter: invert(1); /* deixa branco */
+}
+</style>
+
+
+
+</body>
+</html>
